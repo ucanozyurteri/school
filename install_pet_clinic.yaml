@@ -9,11 +9,39 @@
       version: main
       dest: /var/www/spring-petclinic/
   
-  - name: PWD Command
-    ansible.builtin.shell:
-      cmd: pwd
-    register: output
+  - name: Run command on specific folder
+    command: ls 
+    args:
+      chdir: /root/spring-petclinic
 
-  - name: Debug output
-    debug:
-      var: output
+  - name: Install Java
+    yum:
+      name: java
+      state: latest
+
+  - name: Run mvn package command
+    command: ./mvnw package
+    args:
+      chdir: /root/spring-petclinic/
+
+  - name: Run the java app
+    command: java -jar target/*.jar
+
+
+
+
+
+
+
+
+
+  # - name: PWD Command
+  #   ansible.builtin.shell:
+  #     cmd: pwd
+  #   register: output
+
+  # - name: Debug output
+  #   debug:
+  #     var: output
+
+  
