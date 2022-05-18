@@ -9,5 +9,6 @@
       version: main
       dest: /var/www/spring-petclinic/
   
-  - name: Run ls command
-    command: ls
+  - name: PWD Command
+    ansible.builtin.shell:
+      cmd: pwd
