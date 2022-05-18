@@ -12,3 +12,8 @@
   - name: PWD Command
     ansible.builtin.shell:
       cmd: pwd
+    register: output
+
+  - name: Debug output
+    debug:
+      var: output
