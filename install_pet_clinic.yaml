@@ -8,11 +8,6 @@
       repo: https://github.com/spring-projects/spring-petclinic.git
       version: main
       dest: /spring-petclinic
-  
-  - name: Run command on specific folder
-    command: ls 
-    args:
-      chdir: spring-petclinic/
 
   - name: Install Java
     yum:
