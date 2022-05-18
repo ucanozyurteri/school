@@ -12,7 +12,7 @@
   - name: Run command on specific folder
     command: ls 
     args:
-      chdir: /root/spring-petclinic
+      chdir: /spring-petclinic
 
   - name: Install Java
     yum:
