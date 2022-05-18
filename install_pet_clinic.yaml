@@ -12,7 +12,7 @@
   - name: Run command on specific folder
     command: ls 
     args:
-      chdir: /spring-petclinic
+      chdir: /var/www/spring-petclinic/
 
   - name: Install Java
     yum:
@@ -22,7 +22,7 @@
   - name: Run mvn package command
     command: ./mvnw package
     args:
-      chdir: /spring-petclinic
+      chdir: /var/www/spring-petclinic/
 
   - name: Run the java app
     command: java -jar target/*.jar
