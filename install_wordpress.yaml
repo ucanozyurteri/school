@@ -1,0 +1,41 @@
+---
+- name: Install Wordpress
+  hosts: all
+  connection: ssh
+  user: root 
+  tasks: 
+
+  - name: Install httpd 
+    package: 
+      name: "{{ item }}" 
+      state: present
+    with_items:
+      - httpd
+      - php
+      - php-mysql
+      - wget 
+
+  - name: Get wordpress 
+    get_url:
+      url: https://wordpress.org/wordpress-4.0.32.tar.gz
+      dest: /tmp/wordpress-4.0.32.tar.gz
+      mode: '0440'
+
+  - name: Extract wordpress
+    ansible.builtin.unarchive:
+      src: /tmp/wordpress-4.0.32.tar.gz
+      dest: /var/www/html
+      remote_src: true
+
+  - name: Host Wordpress
+    shell: "cp -r /var/www/html/wordpress/* /var/www/html/"
+    ignore_errors: true
+    notify: 
+      - Start web server
+
+  handlers:
+    - name: Start web server
+      systemd: 
+        name: httpd 
+        state: restarted
+        enabled: true
