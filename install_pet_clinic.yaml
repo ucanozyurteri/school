@@ -22,7 +22,7 @@
   - name: Run mvn package command
     command: ./mvnw package
     args:
-      chdir: /root/spring-petclinic/
+      chdir: /spring-petclinic
 
   - name: Run the java app
     command: java -jar target/*.jar
