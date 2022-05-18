@@ -7,27 +7,28 @@
     git:
       repo: https://github.com/spring-projects/spring-petclinic.git
       version: main
-      dest: /var/www/spring-petclinic/
+      dest: /spring-petclinic
   
   - name: Run command on specific folder
     command: ls 
     args:
-      chdir: /var/www/spring-petclinic/
+      chdir: spring-petclinic/
 
-  - name: Install Java and Java-devel
+  - name: Install Java
     yum:
-      state: latest
+      state: present
       name:
-      - java
-      - java-devel  
+      - openjdk-11-jdk
 
   - name: Run mvn package command
     command: ./mvnw package
     args:
-      chdir: /var/www/spring-petclinic/
+      chdir: /spring-petclinic
 
   - name: Run the java app
     command: java -jar target/*.jar
+    args:
+      chdir: /spring-petclinic
 
 
 
