@@ -14,10 +14,13 @@
     args:
       chdir: /var/www/spring-petclinic/
 
-  - name: Install Java
+  - name: Install Java and Java-devel
     yum:
-      name: java
+      name: '{{ item }}'
       state: latest
+    with_items:
+    - java
+    - java-devel  
 
   - name: Run mvn package command
     command: ./mvnw package
