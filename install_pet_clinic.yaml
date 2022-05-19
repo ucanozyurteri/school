@@ -13,12 +13,12 @@
     yum:
       name: '*'
       state: latest
+      update_cache: yes
       
   - name: Install Java
     yum:
-      state: present
-      name:
-      - openjdk-11-jdk
+      state: latest
+      name: java
 
   - name: Run mvn package command
     command: ./mvnw package
