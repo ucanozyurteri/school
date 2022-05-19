@@ -9,6 +9,11 @@
       version: main
       dest: /spring-petclinic
 
+  - name: Upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+      
   - name: Install Java
     yum:
       state: present
